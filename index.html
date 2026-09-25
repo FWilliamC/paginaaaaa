@@ -572,19 +572,83 @@
   body.modo-noche .pista-interaccion{ color:#b6a4cc; }
 
   /* ================= RESPONSIVE ================= */
-  @media (max-width: 760px){
+  @media (max-width: 768px){
+    /* En móvil se reserva una franja superior para la luna y los controles. */
+    body{
+      min-height:100dvh;
+      display:block;
+      padding:76px 12px 16px;
+      overflow-x:hidden;
+      overflow-y:auto;
+    }
+    .controles-flotantes{
+      top:12px;
+      right:12px;
+      gap:6px;
+      z-index:70;
+    }
+    .boton-control{
+      width:34px;
+      height:34px;
+      font-size:0.9rem;
+    }
+    .luna{
+      top:13px;
+      left:15px;
+      width:54px;
+      height:54px;
+      box-shadow:inset 11px 3px 0 0 #fffdfa;
+    }
+    .luna::before{ inset:-38px; }
+    .contenido-principal{
+      max-width:620px;
+      margin:0 auto;
+    }
     .tarjeta-principal{
       grid-template-columns: 1fr;
       grid-template-areas:
         "arbol"
         "carta"
         "contador";
-      padding:28px 22px 22px;
-      border-radius:26px;
+      padding:18px 15px 16px;
+      border-radius:22px;
+      row-gap:14px;
     }
-    .columna-arbol{ min-height:280px; }
-    .columna-carta{ text-align:center; align-items:center; }
+    /* El canvas conserva una caja fluida propia: nunca se escala con recorte. */
+    .columna-arbol{
+      width:100%;
+      height:clamp(205px, 60vw, 270px);
+      min-height:0;
+      overflow:visible;
+    }
+    #arbol-canvas{
+      width:100%;
+      height:100%;
+    }
+    .columna-carta{
+      gap:8px;
+      text-align:center;
+      align-items:center;
+    }
+    .titulo-carta{ font-size:clamp(1.55rem, 7vw, 1.9rem); }
+    .cuerpo-carta p{
+      font-size:0.83rem;
+      line-height:1.55;
+      margin-bottom:6px;
+    }
+    .firma-carta{ font-size:1.2rem; margin-top:2px; }
+    .nombres-carta{ font-size:0.78rem; }
     .divisor-carta{ margin-left:auto; margin-right:auto; }
+    .franja-contador{
+      padding-top:12px;
+      gap:4px;
+    }
+    .etiqueta-contador{ font-size:0.76rem; }
+    .tiempo-en-linea{
+      font-size:0.88rem;
+      line-height:1.65;
+    }
+    .pista-interaccion{ font-size:0.64rem; }
     /* En pantallas pequeñas el árbol conserva el protagonismo. */
     .luciernagas span:nth-child(n + 10){ display:none; }
     .estrella:nth-child(n + 105){ display:none; }
